@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Text & Analog Clock</title>
+  
+  
+  <link rel='stylesheet' href='css/borjlr.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <main id="clock">
+  <template v-if="tick">
+    <analog-clock :minute="time.minutes" :tick="tick"></analog-clock>
+    <text-clock :time="time"></text-clock>
+  </template>
+</main>
+
+<script type="text/x-template" id="analog-clock">
+  <figure class="analog-clock">
+    <figcaption class="analog-clock__face">
+      <span v-for="n in 60"
+        :key="n"
+        class="analog-clock__notch"
+        :class="{ '-long': !(n % 5) }"
+        :style="{ transform: `rotate(${n * 6}deg)` }">
+      </span>
+    </figcaption>
+
+    <span class="analog-clock__hand -seconds" :style="seconds"></span>
+    <span class="analog-clock__hand -minutes" :style="minutes"></span>
+    <span class="analog-clock__hand -hours" :style="hours"></span>
+  </figure>
+</script>
+
+<script type="text/x-template" id="text-clock">
+  <output class="text-clock">
+    <hgroup class="text-clock__col -meridiem">
+      <h2>{{ meridiem }}</h2>
+      <h2>m</h2>
+    </hgroup>
+
+    <time class="text-clock__col">
+      <h3 v-for="(part, i) in output" :key="i" class="text-clock__row">{{ part }}</h3>
+    </time>
+  </output>
+</script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
